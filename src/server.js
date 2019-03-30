@@ -1,8 +1,10 @@
 import "@babel/polyfill"
 import { app } from './app'
 
-app.listen(9090,() => {
-  console.log('Server is listening at http://localhost:9090')
+const PORT = process.env.PORT || 9090
+
+app.listen(PORT,() => {
+  console.log(`Server is listening at http://localhost:${PORT}`)
 })
 
 export default app;
