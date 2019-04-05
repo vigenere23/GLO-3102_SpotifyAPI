@@ -17,14 +17,26 @@ export class SpotifyController {
     ResponseHelper.sendResponse(res, response)
   }
 
-  static async similar (req, res) {
+  static async getArtistById (req, res) {
     const headers = {
       'Authorization': req.token
     }
-    const url = `${BASE_URL}/artists/${req.artistId}/related-artists`
+    const url = `${BASE_URL}/artists/${req.params.artistId}`
+    
+    const response = await AxiosHelper.axiosGet(
+      url, { headers }
+    )
+    ResponseHelper.sendResponse(res, response)
+  }
+
+  static async similarArtists (req, res) {
+    const headers = {
+      'Authorization': req.token
+    }
+    const url = `${BASE_URL}/artists/${req.params.artistId}/related-artists`
 
     const artistResponse = await AxiosHelper.axiosGet(
-      url, { headers }
+      url, { params: req.query, headers }
     )
     ResponseHelper.sendResponse(res, artistResponse)
   }
