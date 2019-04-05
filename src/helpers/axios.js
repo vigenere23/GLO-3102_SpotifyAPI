@@ -1,5 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
+import { ResponseHelper } from './response'
 
 export class AxiosHelper {
 
@@ -8,7 +9,7 @@ export class AxiosHelper {
       const response = await axios.get(url, options);
       return response.data;
     } catch (err) {
-      return this.parseError(err)
+      return ResponseHelper.parseError(err)
     }
   }
 
@@ -17,24 +18,7 @@ export class AxiosHelper {
       const response = await axios.post(url, qs.stringify(body), options);
       return response.data;
     } catch (err) {
-      return this.parseError(err)
-    }
-  }
-
-  static parseError (err) {
-    if (err.response && err.response.status) {
-      console.error(err.response.data)
-      return {
-        status: err.response.status,
-        error: err.response.data
-      }
-    }
-    else {
-      console.error(err)
-      return {
-        status: 500,
-        error: err.toString()
-      }
+      return ResponseHelper.parseError(err)
     }
   }
 
