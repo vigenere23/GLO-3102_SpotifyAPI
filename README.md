@@ -1,6 +1,6 @@
 # SpotifyAPI
 
-Ce mini serveur permet d'acheminer les requêtes destinées à l'API de Spotify en gérant les tokens d'accès. Afin de connaître les routes disponibles, veuillez vous référer au [wiki](https://github.com/GLO3102-H19/spotifyAPI-team-18/wiki).
+This routing server handles the authorization and tokenization process needed to contact the Spotify's API. For now, only the routes needed by [GLO3102-uBeat](https://github.com/vigenere23/GLO3102-uBeat) are opened. To see exactly which routes are opened, please read the [wiki](https://github.com/vigenere23/GLO3102-SpotifyAPI/wiki).
 
 ## Installation
 
@@ -8,9 +8,9 @@ Ce mini serveur permet d'acheminer les requêtes destinées à l'API de Spotify 
 yarn install
 ```
 
-## Démarrage
+## Start
 
-### Developpement (nodemon)
+### Dev (nodemon)
 
 ```bash
 yarn dev
