@@ -1,9 +1,8 @@
 import { AxiosHelper } from '../helpers/axios'
 import { constants } from '../helpers/constants'
-import { ResponseHelper } from '../helpers/response';
+import { ResponseHelper } from '../helpers/response'
 
 const BASE_URL = 'https://accounts.spotify.com/api/token'
-const AUTH = 'Basic ZGM3Njg0OTRkYzU2NDVlMGEyMGYyMTUxN2FhNjBjY2I6OGI0YTk5NWEyMGZiNGY5ZGE2YmFiYTIzMzgyNzIwOTE='
 
 async function getToken(req, res) {
   let token = req.cookies[constants.TOKEN_COOKIE_NAME]
@@ -12,7 +11,7 @@ async function getToken(req, res) {
     const body = { grant_type: 'client_credentials' }
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      Authorization: AUTH
+      Authorization: process.env.SPOTIFY_AUTHORIZATION
     }
     const authResponse = await AxiosHelper.axiosPost(BASE_URL, body, { headers })
 
