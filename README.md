@@ -24,4 +24,6 @@ yarn serve
 
 ## Environment variables
 
-Do not forget to specify the spotify Authorization token specified by `Basic` followed by your Base64 encoded `client_id:client_secret` string, separated by spaces. For more info, please read spotify's [documentation](https://developer.spotify.com/documentation/general/guides/authorization-guide/#client-credentials-flow).
+You must create a `.env` file with the following fields:
+
+* `SPOTIFY_AUTHORIZATION` : should contain your Spotify Authorization token. For more info, please read the [documentation](https://developer.spotify.com/documentation/general/guides/authorization-guide/#client-credentials-flow).
