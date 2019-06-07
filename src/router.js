@@ -1,6 +1,6 @@
 import express from 'express'
 import { SpotifyController } from './controllers/spotifyController'
-import { AuthController } from './controllers/authController';
+import { AuthController } from './controllers/authController'
 
 const router = express.Router()
 

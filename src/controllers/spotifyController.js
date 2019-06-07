@@ -4,7 +4,6 @@ import { ResponseHelper } from '../helpers/response'
 const BASE_URL = 'https://api.spotify.com/v1'
 
 export class SpotifyController {
-
   static async search (req, res) {
     const headers = {
       'Authorization': req.token
@@ -22,7 +21,7 @@ export class SpotifyController {
       'Authorization': req.token
     }
     const url = `${BASE_URL}/artists/${req.params.artistId}`
-    
+
     const response = await AxiosHelper.axiosGet(
       url, { headers }
     )
@@ -40,5 +39,4 @@ export class SpotifyController {
     )
     ResponseHelper.sendResponse(res, artistResponse)
   }
-
 }

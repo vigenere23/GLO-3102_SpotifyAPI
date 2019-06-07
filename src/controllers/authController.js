@@ -4,10 +4,14 @@ import { ResponseHelper } from '../helpers/response'
 
 const BASE_URL = 'https://accounts.spotify.com/api/token'
 
-async function getToken(req, res) {
+async function getToken (req, res) {
   let token = req.cookies[constants.TOKEN_COOKIE_NAME]
   if (!token) {
     console.log('[INFO] Getting token from spotify')
+    if (!process.env.SPOTIFY_AUTHORIZATION) {
+      throw new Error('Missing SPOTIFY_AUTHORIZATION environment variable. Please read the README for more info.')
+    }
+
     const body = { grant_type: 'client_credentials' }
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -16,7 +20,7 @@ async function getToken(req, res) {
     const authResponse = await AxiosHelper.axiosPost(BASE_URL, body, { headers })
 
     if (authResponse.error) {
-      throw new Error("Could not get token from Spotify")
+      throw new Error('Could not get token from Spotify')
     } else {
       token = `${authResponse.token_type} ${authResponse.access_token}`
       res.cookie(
@@ -28,12 +32,10 @@ async function getToken(req, res) {
       )
     }
   }
-
   return token
 }
 
 export class AuthController {
-
   static async ensureToken (req, res, next) {
     try {
       req.token = await getToken(req, res)
@@ -44,5 +46,4 @@ export class AuthController {
       res.status(response.status).send(response.error)
     }
   }
-
 }
